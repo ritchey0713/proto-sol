@@ -8,9 +8,24 @@ public class PlayerController : MonoBehaviour {
 
 	public Animator myAnim;
 
+  // reminder: static type variables not accessible in Unity
+  public static PlayerController instance;
+
+  public string areaTransitionName;
+ 
 	// Start is called before the first frame update
 	void Start() {
-			
+      // keep duplicates from being assigned
+      if (instance == null) {
+        // assigns script to whatever it was originally attached to (in this case the plyer object)
+        instance = this;
+      } else {
+        // remove duplicates from being rendered
+        Destroy(gameObject);
+      }
+
+    // gameObject here is the player (gameObject refers to the object this script is attached to)
+		DontDestroyOnLoad(gameObject);
 	}
 
 	// Update is called once per frame
