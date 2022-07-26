@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
   public string areaTransitionName;
  
 	// Start is called before the first frame update
-	void Start() {
+	private void Awake() {
       // keep duplicates from being assigned
       if (instance == null) {
         // assigns script to whatever it was originally attached to (in this case the plyer object)
@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour {
         // remove duplicates from being rendered
         Destroy(gameObject);
       }
+  }
 
+    void Start() {
     // gameObject here is the player (gameObject refers to the object this script is attached to)
 		DontDestroyOnLoad(gameObject);
 	}
